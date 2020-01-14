@@ -31,6 +31,7 @@ tmp/
 local.properties
 .settings/
 .loadpath
+.idea/workspace.xml
 # JDT-specific (Eclipse Java Development Tools)
 .classpath
 

@@ -3,7 +3,8 @@ org.springframework.boot.env.PropertySourceLoader=\
 org.springframework.boot.env.PropertiesPropertySourceLoader,\
 org.springframework.boot.env.YamlPropertySourceLoader
 
-# Run Listeners
+# Run Listeners：该类用于监听SpringBoot启动过程中各个阶段需要做的事情：程序准备启动 ->准备环境
+# ->应用上下文ApplicationContext准备加载 ->程序启动完成：
 org.springframework.boot.SpringApplicationRunListener=\
 org.springframework.boot.context.event.EventPublishingRunListener
 
@@ -11,14 +12,14 @@ org.springframework.boot.context.event.EventPublishingRunListener
 org.springframework.boot.SpringBootExceptionReporter=\
 org.springframework.boot.diagnostics.FailureAnalyzers
 
-# Application Context Initializers
+# Application Context Initializers：SpringBoot启动时，会将这些容器初始化类加载到
 org.springframework.context.ApplicationContextInitializer=\
 org.springframework.boot.context.ConfigurationWarningsApplicationContextInitializer,\
 org.springframework.boot.context.ContextIdApplicationContextInitializer,\
 org.springframework.boot.context.config.DelegatingApplicationContextInitializer,\
 org.springframework.boot.web.context.ServerPortInfoApplicationContextInitializer
 
-# Application Listeners
+# Application Listeners：SpringBoot启动时，会将这些监听器加载到
 org.springframework.context.ApplicationListener=\
 org.springframework.boot.ClearCachesApplicationListener,\
 org.springframework.boot.builder.ParentContextCloserApplicationListener,\

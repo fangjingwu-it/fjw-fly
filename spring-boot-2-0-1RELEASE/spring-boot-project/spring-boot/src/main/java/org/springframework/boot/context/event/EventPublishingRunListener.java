@@ -40,6 +40,9 @@ import org.springframework.util.ErrorHandler;
  * @author Phillip Webb
  * @author Stephane Nicoll
  * @author Andy Wilkinson
+ *
+ * 该类用于监听SpringBoot启动过程中各个阶段需要做的事情：程序准备启动 ->准备环境 ->应用上下文ApplicationContext准备加载 ->程序启动完成
+ * 其主要功能是：通知各个阶段的listener处理对应阶段的事件
  */
 public class EventPublishingRunListener implements SpringApplicationRunListener, Ordered {
 
@@ -47,6 +50,10 @@ public class EventPublishingRunListener implements SpringApplicationRunListener,
 
 	private final String[] args;
 
+	/**
+	 * 事件监听器的管理接口（用于发出事件，执行监听器中的方法）
+	 * 1. 用于管理监听器（ApplicationListener）；2. 也可以执行监听器listener（监听事件）的方法
+	 */
 	private final SimpleApplicationEventMulticaster initialMulticaster;
 
 	public EventPublishingRunListener(SpringApplication application, String[] args) {
@@ -63,12 +70,20 @@ public class EventPublishingRunListener implements SpringApplicationRunListener,
 		return 0;
 	}
 
+	/**
+	 * SpringBoot开始阶段，监听器（监听ApplicationStartingEvent事件）要执行的操作
+	 *
+	 * SpringApplication此时就是事件源
+	 */
 	@Override
 	public void starting() {
 		this.initialMulticaster.multicastEvent(
 				new ApplicationStartingEvent(this.application, this.args));
 	}
 
+	/**
+	 * SpringBoot准备环境阶段，监听器（监听ApplicationEnvironmentPreparedEvent事件）要执行的操作
+	 */
 	@Override
 	public void environmentPrepared(ConfigurableEnvironment environment) {
 		this.initialMulticaster.multicastEvent(new ApplicationEnvironmentPreparedEvent(

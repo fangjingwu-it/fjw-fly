@@ -31,6 +31,8 @@ import org.springframework.core.io.support.SpringFactoriesLoader;
  * @author Phillip Webb
  * @author Dave Syer
  * @author Andy Wilkinson
+ *
+ * 该类用于监听SpringBoot启动过程中各个阶段需要做的事情：程序准备启动 ->准备环境 ->应用上下文ApplicationContext准备加载 ->程序启动完成
  */
 public interface SpringApplicationRunListener {
 

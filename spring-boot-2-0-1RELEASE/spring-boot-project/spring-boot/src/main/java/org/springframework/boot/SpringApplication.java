@@ -354,6 +354,9 @@ public class SpringApplication {
 		configureHeadlessProperty();
 
 		// 加载所有的监听器(只有这一个EventPublishingRunListener)，之后调用该类的starting，发布应用启动事件
+		/*
+		 * 监听SpringBoot启动过程中各个阶段需要做的事情：程序准备启动 ->准备环境 ->应用上下文ApplicationContext准备加载 ->程序启动完成
+		 */
 		SpringApplicationRunListeners listeners = getRunListeners(args);
 		listeners.starting();
 		try {
@@ -372,7 +375,7 @@ public class SpringApplication {
 			context = createApplicationContext();
 			exceptionReporters = getSpringFactoriesInstances(SpringBootExceptionReporter.class, new Class[] { ConfigurableApplicationContext.class }, context);
 
-			// 调用所有初始化类的initialize方法
+			// 调用所有初始化类的initialize方法：准备应用上下文本时需要监听的时间
 			prepareContext(context, environment, listeners, applicationArguments, printedBanner);
 
 			// 初始化spring容器-完成IoC容器可用的最后一道工序。

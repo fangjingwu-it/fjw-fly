@@ -2,6 +2,15 @@ package com.enter.door;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.SpringBootConfiguration;
+import org.springframework.context.ApplicationEvent;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.event.ApplicationEventMulticaster;
+import org.springframework.context.event.SimpleApplicationEventMulticaster;
+
+import java.util.EventListener;
+import java.util.EventObject;
 
 /**
  * @description: 入口
@@ -11,6 +20,7 @@ import org.springframework.boot.SpringBootConfiguration;
  * 建议将main类放到根包中
  **/
 @SpringBootConfiguration
+@ComponentScan
 public class EnterDoorApplication {
 
 	public static void main(String[] args) {
@@ -24,7 +34,6 @@ public class EnterDoorApplication {
 		 * context.ApplicationListener作为key指向我们自定义的监听器，如下：
 		 * org.springframework.context.ApplicationListener=com.example.project.MyListener
 		 */
-
 
 		SpringApplication.run(EnterDoorApplication.class, args);
 
